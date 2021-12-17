@@ -3,17 +3,15 @@ import axios from "axios";
 import { useHistory, useParams} from 'react-router-dom';
 import Button from "../../components/button/Button";
 import SubHeader from "../../components/subHeader/SubHeader";
-
+import './Subreddit.css';
+import Backarrow from "../../components/backarrow/Backarrow";
 
 function Subreddit() {
     const [posts, setPosts] = useState([]);
-    const history = useHistory()
-
-
+    const history = useHistory();
     const { id } = useParams();
 
-
-        function handleClick (){
+        function homePageClick (){
             history.push('/')
         }
 
@@ -41,8 +39,8 @@ function Subreddit() {
             />
             <br/>
             <Button
-                onClick={handleClick}
-                title={"Terug naar de Homepagina"}
+                onClick={homePageClick}
+                svg={<Backarrow />}
                 />
         </div>
     )

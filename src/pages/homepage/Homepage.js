@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Header from "../../components/header/Header";
+import './Homepage.css';
 
 function Homepage() {
     const [posts, setPosts] = useState([]);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false)
 
     // function numberFormat() {
     //     return ( new Intl.NumberFormat('es-ES'))
@@ -12,19 +15,29 @@ function Homepage() {
 
     useEffect(()=> {
         async function fetchReddit() {
+            toggleError(false);
+            toggleLoading(true);
+
             try {
                 const result = await axios.get('https://www.reddit.com/hot.json?limit=15')
-                console.log(result.data.data.children)
                 setPosts(result.data.data.children)
             } catch (e) {
-                console.error(e)
+                console.error(e);
+                toggleError(true)
             }
         }
+                toggleLoading(false);
         fetchReddit();
     }, [])
     return (
         <>
-            <h1>Dit is de homepagina</h1>
+            <h1>Welkom</h1>
+            <h1>Dit zijn de 15 meest populaire posts op Reddit.com</h1>
+            {error &&
+            <p>Er is iets misgegaan, sluit af en start opnieuw op </p>}
+            {loading &&
+            <p>Bezig met ophalen van de gegevens</p>}
+
             {posts.map((post)=>{
                 return (
                     <Header
@@ -36,6 +49,8 @@ function Homepage() {
                         />
                 )
             })}
+
+
         </>
     )
 }

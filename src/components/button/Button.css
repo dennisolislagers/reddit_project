@@ -1,0 +1,11 @@
+Button{
+    background-color: transparent;
+    border-radius: 15px;
+    width: 250px;
+    height:50px;
+    font-size: 12px;
+    border-style: none;
+}
+Button:hover{
+    background-color: cornsilk;
+}

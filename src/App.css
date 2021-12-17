@@ -1,0 +1,13 @@
+
+body{
+    background-image: url("./assets/background.jpg");
+    background-size: cover;
+    text-align: center;
+}
+h1{
+    color: cornsilk;
+    border: 1px solid black;
+}
+Link{
+
+}
